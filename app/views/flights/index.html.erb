@@ -1,0 +1,56 @@
+<div class="col-md-10 col-md-offset-1" id="search-form">
+  <h1 class="text-center">Search for Buses: </h1><br/>
+  <%= form_for @flight, html: {method: :get}, remote: true do |f| %>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-2 text-center">
+          <%= f.label :from_bus_stand %>
+          <%= f.select(:from_bus_stand, @airports, {selected: @from}, {:class => 'form-control', id: 'from_bus_stand'}) %>
+          <br/>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <%= f.label :to_bus_stand %>
+          <%= f.select(:to_bus_stand, @airports, {selected: @to}, {:class => 'form-control', id: 'to_bus_stand'}) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 col-md-offset-2 text-center">
+          <%= f.label :date %>
+          <%= f.select(:date, @dates, {selected: @date}, {:class => 'form-control'}) %>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <%= f.label :passengers %>
+          <%= f.select(:passengers, @passengers, {selected: @passengers_select}, {:class => 'form-control'}) %>
+        </div>
+      </div>
+      <br/>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <%= f.submit "Search", id: 'search-btn', class: 'form-control btn btn-primary btn-block search-btn' %>
+        </div>
+      </div>
+  <% end %>
+</div>
+<br/>
+
+<div id="results" style="display: none;">
+
+</div>
+
+<script type="text/javascript">
+
+
+    $('#search-btn').click(function () {
+        $from = $('#from_bus_stand option:selected').text();
+        $to = $('#to_bus_stand option:selected').text();
+        if ($from == $to) {
+            alert("Can't fly to the same city");
+        }
+    });
+
+
+</script>

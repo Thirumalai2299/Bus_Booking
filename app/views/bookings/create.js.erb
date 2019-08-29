@@ -1,0 +1,19 @@
+<% if @booking.save %>
+
+  $('#booking-form').hide();
+  $('#success-notice').html("<%= j render 'shared/flash_messages' %>").hide().fadeIn();
+  $('#errors_for_form').hide();
+
+window.setTimeout(function() {
+    window.location.href = "<%= booking_path(@booking) %>";
+}, 5000);
+
+<% else %>
+
+  $('#errors_for_form').html("<%= j render 'shared/error_messages', object: @booking %>");
+
+    $('html,body').animate({
+        scrollTop: $("#errors_for_form").offset().top
+});
+
+<% end %>

@@ -1,0 +1,7 @@
+<h3>Hello <%= @passenger.name %></h3>
+
+<p>
+  Thank you for choosing Thiru-Bus-Booker. You can see your Bus info by clicking the link below.
+</p>
+
+<%= link_to "Booking Info", booking_url(@passenger.bookings.last) %>
